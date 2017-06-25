@@ -21,6 +21,9 @@ namespace Glossina
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Glossina v1.0 by PCMacOS");
+            Console.ResetColor();
             Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
             var url = Console.ReadLine();
             bool siteExist;
@@ -56,12 +59,19 @@ namespace Glossina
                         periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
                     }, null, startTimeSpan, periodTimeSpan);
 
-                    Console.WriteLine("If you want to stop the application, input 'stop'.\nIf you want to hide the application, input 'hide'. Warning!!! if hide it for stop it must be kill it from Task Manager!");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nIf you want to stop the application, input 'stop'.");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("If you want to hide the application, input 'hide'.");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(" Warning!!! If hide it for stop it must be kill it from Task Manager!");
+                    Console.WriteLine(" ");
+                    Console.ResetColor();
                     string stopPing;
                     do
                     {
                         stopPing = Console.ReadLine();
-                        if (stopPing=="hide") Hide();//
+                        if (stopPing=="hide") Hide();
                     } while (stopPing!="stop");
                     siteExist = false;
                     Environment.Exit(0);
