@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.InteropServices;
 //If use the first method for the request then enable this two 'using' and comment the other two.
 using System.IO;
 using System.Net;
@@ -11,6 +12,13 @@ namespace Glossina
 {
     class Program
     {
+        [DllImport("Kernel32.dll")]
+        private static extern IntPtr GetConsoleWindow();
+
+        [DllImport("User32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int cmdShow);
+
+
         static void Main(string[] args)
         {
             Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
@@ -48,11 +56,12 @@ namespace Glossina
                         periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
                     }, null, startTimeSpan, periodTimeSpan);
 
-                    Console.WriteLine("If you want to stop the application, input 'stop'.");
+                    Console.WriteLine("If you want to stop the application, input 'stop'.\nIf you want to hide the application, input 'hide'. Warning!!! if hide it for stop it must be kill it from Task Manager!");
                     string stopPing;
                     do
                     {
                         stopPing = Console.ReadLine();
+                        if (stopPing=="hide") Hide();//
                     } while (stopPing!="stop");
                     siteExist = false;
                     Environment.Exit(0);
@@ -103,5 +112,23 @@ namespace Glossina
         }
         */
 
+        static void Hide()
+        {
+            IntPtr hWnd = GetConsoleWindow();
+            if (hWnd != IntPtr.Zero)
+            {
+                ShowWindow(hWnd, 0);//Hide
+            }
+        }
+
+        /*
+        static void Show()
+        {
+            IntPtr hWnd = GetConsoleWindow();
+            if (hWnd != IntPtr.Zero)
+            {
+                ShowWindow(hWnd, 1);//Show
+            }
+        }*/
     }
 }
