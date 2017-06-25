@@ -1,6 +1,5 @@
 # Glossina
-<i>Glossina is an application for staying awake a server.</I>
-<hr/>
+<i>Glossina is an application for staying awake a server.</i>
 <br>
 <h3>#Why use Glossina?</h3>
 If you have deployed a web application to Heroku or to Azure, maybe you don't pay the option to stay awake.
