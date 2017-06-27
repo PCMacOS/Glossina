@@ -29,7 +29,7 @@ namespace Glossina
             bool siteExist;
             siteExist = PingSite(url);
             var rnd = new Random(); //Get starting random method from system time
-            var timeToStart = rnd.Next(1, 20); // Get the random time
+            var timeToStart = rnd.Next(1, 14); // Get the random time
             do
             {
                 
@@ -55,7 +55,7 @@ namespace Glossina
                         localDate = DateTime.Now;
                         Console.WriteLine("Requested to {2} {0} times at {1}. The period Time is {3} minutes.", pingCount,
                             localDate.ToString(CultureInfo.InvariantCulture), url, timeToStart);
-                        timeToStart = rnd.Next(1, 20); // Get the random time
+                        timeToStart = rnd.Next(1, 14); // Get the random time
                         periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
                     }, null, startTimeSpan, periodTimeSpan);
 
