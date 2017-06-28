@@ -15,4 +15,3 @@ Then Glossina sends a GET request every random (1-20) minutes to the server for 
 So as long as your computer is on, the Glossina keeps the server awake automatically.</li>
   <li>If you want, call the "hide method" at first line of "main()" to hide it automatically.</li>
 </ul> 
-
