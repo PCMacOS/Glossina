@@ -1,7 +1,7 @@
 # Glossina
 <i>Glossina is an application for staying awake a server.</i>
 <p><a href="https://github.com/PCMacOS/Glossina/blob/master/Glossina.exe?raw=true">Download the executable.</a></p>
-<img src="https://github.com/PCMacOS/Glossina/blob/master/Glossina/Glossina.ico?raw=true" alt="Glosina_Logo" style="display: block; margin: 0 auto;">
+<img src="https://github.com/PCMacOS/Glossina/blob/master/Glossina/Glossina.ico?raw=true" alt="Glosina_Logo" style="height:100px; display: block; margin: 0 auto;">
 <h3>#Why use Glossina?</h3>
 If you have deployed a web application to Heroku or to Azure, maybe you don't pay the option to stay awake.
 The server goes to sleep if do not have traffic for some minutes so if you use it, it can take some seconds to replies.
