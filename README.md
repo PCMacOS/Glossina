@@ -1,6 +1,6 @@
 # Glossina
+<img src="https://github.com/PCMacOS/Glossina/blob/master/Glossina/Glossina.ico?raw=true" alt="Glosina_Logo" style="height:228px;">
 <i>Glossina is an application for staying awake a server.</i>
-<imgsrc="https://github.com/PCMacOS/Glossina/blob/master/Glossina/Glossina.ico?raw=true" alt="Glosina_Logo" style="height:228px;">
 <p><a href="https://github.com/PCMacOS/Glossina/blob/master/Glossina.exe?raw=true">Download the executable.</a></p>
 <h3>#Why use Glossina?</h3>
 If you have deployed a web application to Heroku or to Azure, maybe you don't pay the option to stay awake.
