@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 //If use the first method for the request then enable this two 'using' and comment the other two.
 using System.IO;
 using System.Net;
+
 //If use the second method for the request then enable this two 'using' and comment the other two.
 //using System.Threading.Tasks;
 //using System.Net.Http;
@@ -21,63 +22,73 @@ namespace Glossina
 
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Glossina v1.0 by PCMacOS");
-            Console.ResetColor();
-            Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
-            var url = Console.ReadLine();
-            bool siteExist;
-            siteExist = PingSite(url);
-            var rnd = new Random(); //Get starting random method from system time
-            var timeToStart = rnd.Next(1, 14); // Get the random time
-            do
+            Start:
+            try
             {
-                
-                if (!siteExist)
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Glossina v1.1 by PCMacOS");
+                Console.ResetColor();
+                Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
+                var url = Console.ReadLine();
+                bool siteExist;
+                siteExist = PingSite(url);
+                var rnd = new Random(); //Get starting random method from system time
+                var timeToStart = rnd.Next(1, 14); // Get the random time
+                do
                 {
-                    Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
-                    url = Console.ReadLine();
-                    siteExist = PingSite(url);
-                }
 
-                var pingCount = 0;
-                DateTime localDate;
-                
-                if (siteExist)
-                {
-                    var startTimeSpan = TimeSpan.Zero;
-                    var periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
-                    var timer = new System.Threading.Timer((e) => //Do this evrey timeToStart Minutes
+                    if (!siteExist)
                     {
+                        Console.WriteLine("Give the site you want to cause insomnia without 'http://' : ");
+                        url = Console.ReadLine();
                         siteExist = PingSite(url);
-                        RequestSite(url);
-                        pingCount++;
-                        localDate = DateTime.Now;
-                        Console.WriteLine("Requested to {2} {0} times at {1}. The period Time is {3} minutes.", pingCount,
-                            localDate.ToString(CultureInfo.InvariantCulture), url, timeToStart);
-                        timeToStart = rnd.Next(1, 14); // Get the random time
-                        periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
-                    }, null, startTimeSpan, periodTimeSpan);
+                    }
 
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nIf you want to stop the application, input 'stop'.");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("If you want to hide the application, input 'hide'.");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(" Warning!!! If hide it for stop it must be kill it from Task Manager!");
-                    Console.WriteLine(" ");
-                    Console.ResetColor();
-                    string stopPing;
-                    do
+                    var pingCount = 0;
+                    DateTime localDate;
+
+                    if (siteExist)
                     {
-                        stopPing = Console.ReadLine();
-                        if (stopPing=="hide") Hide();
-                    } while (stopPing!="stop");
-                    siteExist = false;
-                    Environment.Exit(0);
-                }
+                        var startTimeSpan = TimeSpan.Zero;
+                        var periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
+                        var timer = new System.Threading.Timer((e) => //Do this evrey timeToStart Minutes
+                        {
+                            siteExist = PingSite(url);
+                            RequestSite(url);
+                            pingCount++;
+                            localDate = DateTime.Now;
+                            Console.WriteLine("Requested to {2} {0} times at {1}. The period Time is {3} minutes.",
+                                pingCount,
+                                localDate.ToString(CultureInfo.InvariantCulture), url, timeToStart);
+                            timeToStart = rnd.Next(1, 14); // Get the random time
+                            periodTimeSpan = TimeSpan.FromMinutes(timeToStart);
+                        }, null, startTimeSpan, periodTimeSpan);
 
-            } while (true);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\nIf you want to stop the application, input 'stop'.");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("If you want to hide the application, input 'hide'.");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" Warning!!! If hide it for stop it must be kill it from Task Manager!");
+                        Console.WriteLine(" ");
+                        Console.ResetColor();
+                        string stopPing;
+                        do
+                        {
+                            stopPing = Console.ReadLine();
+                            if (stopPing == "hide") Hide();
+                        } while (stopPing != "stop");
+
+                        siteExist = false;
+                        Environment.Exit(0);
+                    }
+
+                } while (true);
+            }
+            catch (Exception e)
+            {
+                goto Start;
+            }
         }
 
         static bool PingSite(string url)
